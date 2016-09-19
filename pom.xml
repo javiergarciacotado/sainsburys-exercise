@@ -12,8 +12,9 @@
     <properties>
         <maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
         <maven.javadoc.plugin.version>2.10.4</maven.javadoc.plugin.version>
-        <maven.surefire.plugin>2.19.1</maven.surefire.plugin>
-        <maven.exec.plugin>1.5.0</maven.exec.plugin>
+        <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
+        <maven.failsafe.plugin.version>2.19.1</maven.failsafe.plugin.version>
+        <maven.exec.plugin.version>1.5.0</maven.exec.plugin.version>
         <junit.version>4.12</junit.version>
         <jsoup.version>1.9.2</jsoup.version>
         <gson.version>2.7</gson.version>
@@ -34,16 +35,16 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>${maven.exec.plugin}</version>
+                <version>${maven.exec.plugin.version}</version>
                 <configuration>
                     <mainClass>uk.co.sainsburys.exercise.Main</mainClass>
                 </configuration>
             </plugin>
             <plugin>
-                <!--used during the test phase of the build lifecycle to execute the unit tests of an application-->
+                <!--used during the test phase of the build lifecycle to execute the unit tests of the application-->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven.surefire.plugin}</version>
+                <version>${maven.surefire.plugin.version}</version>
                 <configuration>
                     <includes>
                         <include>**/*Test.java</include>
@@ -53,6 +54,29 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <!--used during the test phase of the build lifecycle to execute the integration tests of the application-->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe.plugin.version}</version>
+                <configuration>
+                    <includes>
+                        <include>**/*IT.java</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/*Test.java</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
     <reporting>
@@ -61,7 +85,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>${maven.surefire.plugin}</version>
+                <version>${maven.surefire.plugin.version}</version>
             </plugin>
             <!-- uses the Javadoc tool to generate javadocs for the project -->
             <plugin>
@@ -85,6 +109,13 @@
 
 
     <dependencies>
+        <!-- mock  -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.5</version>
+        </dependency>
+
         <!--test-->
         <dependency>
             <groupId>junit</groupId>
