@@ -12,9 +12,9 @@ Running the application
 Clone the repository and use Maven to compile and run it:
 
 git clone <REPO_URL>
-cd sainsbury-web-scraper
+cd sainsbury-exercise-master
 
-1. mvn clean verify site --> runs unit and integration test and generates reporting documentation
+1. mvn clean verify site --> Should run unit and integration tests and generates reporting documentation
 2. mvn exec:java  --> Should generate a results.txt at the root's folder
 3. mvn package --> Should generate a JAR with dependencies (target/webscraper-1.0-SNAPSHOT-jar-with-dependencies.jar)
     3.1. java -jar target/webscraper-1.0-SNAPSHOT-jar-with-dependencies.jar
