@@ -13,7 +13,7 @@ public class PropertiesReader {
     /**
      * loads and stores the properties from the given fileName
      * @param fileName Input to read properties
-     * @throws IOException if ${@param fileName} is not found
+     * @throws IOException if {@code fileName} is not found
      */
     public PropertiesReader(String fileName) throws IOException {
         properties.load(getClass().getResourceAsStream(fileName));
