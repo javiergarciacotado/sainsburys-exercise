@@ -3,8 +3,6 @@ package uk.co.sainsburys.exercise.properties;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
-
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -22,13 +20,13 @@ public class PropertiesReaderTest {
     }
 
     @Test
-    public void givenAValidFileNameAndUnknownPropertyNameReturnEmpty() throws IOException {
+    public void givenAValidFileNameAndUnknownPropertyNameReturnEmpty() {
         when(propertiesReader.get(UNKNOWN_PROPERTY)).thenReturn("");
         assertEquals("", propertiesReader.get(UNKNOWN_PROPERTY));
     }
 
     @Test
-    public void givenAValidFileNameAndKnownPropertyReturnValue() throws IOException {
+    public void givenAValidFileNameAndKnownPropertyReturnValue() {
         when(propertiesReader.get(VALID_PROPERTY)).thenReturn("some value");
         assertEquals("some value", propertiesReader.get(VALID_PROPERTY));
     }

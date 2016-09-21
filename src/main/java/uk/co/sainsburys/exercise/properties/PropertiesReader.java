@@ -1,34 +1,30 @@
 package uk.co.sainsburys.exercise.properties;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * Class to read the properties for the exercise
+ * Class to read the properties file for the exercise
  */
 public class PropertiesReader {
 
-    private final InputStream inputStream;
+    private final Properties properties = new Properties();
 
     /**
-     * Builds an input stream from the given filename resource
-     * @param fileName
+     * loads and stores the properties from the given fileName
+     * @param fileName Input to read properties
      */
-    public PropertiesReader(String fileName) {
-        inputStream = getClass().getResourceAsStream(fileName);
+    public PropertiesReader(String fileName) throws IOException {
+        properties.load(getClass().getResourceAsStream(fileName));
     }
 
     /**
      * To retrieve the property name
      * @param propertyName property to look for
      * @return Property Value or Empty
-     * @throws IOException
      */
-    public String get(String propertyName) throws IOException {
-        final Properties properties = new Properties();
-        properties.load(inputStream);
+    public String get(String propertyName) {
         final String property = properties.getProperty(propertyName);
-        return property != null ? property : "";
+        return property != null && !property.isEmpty() ? property : "";
     }
 }
