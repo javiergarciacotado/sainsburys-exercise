@@ -10,7 +10,6 @@ import java.net.UnknownHostException;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.matches;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -27,14 +26,14 @@ public class WebPageTest {
     }
 
     @Test(expected = UnknownHostException.class)
-    public void givenAnInvalidURLThrowException() throws IOException {
+    public void givenAnInvalidURLShouldThrowException() throws IOException {
         when(webPage.connectTo(INVALID_URL)).thenThrow(UnknownHostException.class);
         webPage.connectTo(INVALID_URL);
         fail("Should have thrown an Exception");
     }
 
     @Test
-    public void givenAValidURLShouldConnect() throws IOException {
+    public void givenAValidURLShouldConnectToTheWebPage() throws IOException {
 
         final Document document = mock(Document.class);
         when(document.title()).thenReturn("Test");
