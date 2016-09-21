@@ -16,7 +16,7 @@ public class WebPage {
      *
      * @param url Web site address
      * @return Document (html) obtained from the given url
-     * @throws IOException
+     * @throws IOException Can't connect to the given url
      */
     public Document connectTo(final String url) throws IOException {
         final Connection connection = Jsoup.connect(url);
